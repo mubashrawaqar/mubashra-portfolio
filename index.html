@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mubashra Waqar — Applied AI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F131A;
+    --ink-2:#151B24;
+    --ink-3:#1B222D;
+    --paper:#EDEAE1;
+    --muted:#93A0B2;
+    --line:rgba(237,234,225,0.10);
+    --line-strong:rgba(237,234,225,0.20);
+    --amber:#E8A33D;
+    --teal:#5FBDB0;
+    --violet:#9385E8;
+    --radius:2px;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} *{animation:none!important;transition:none!important;} }
+
+  body{
+    margin:0;
+    background-color:var(--ink);
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0, transparent 39px, var(--line) 39px, var(--line) 40px),
+      repeating-linear-gradient(90deg, transparent 0, transparent 39px, var(--line) 39px, var(--line) 40px);
+    color:var(--paper);
+    font-family:'Inter', system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  /* Skip link for keyboard/screen reader users */
+  .skip-link{position:absolute; left:-9999px; top:0; background:var(--amber); color:var(--ink); padding:10px 16px; z-index:100;}
+  .skip-link:focus{left:16px; top:16px;}
+
+  :focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    backdrop-filter:blur(10px);
+    background:rgba(15,19,26,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{max-width:var(--maxw); margin:0 auto; padding:16px 28px; display:flex; justify-content:space-between; align-items:center;}
+  .nav-name{font-family:'Space Grotesk'; font-weight:600; font-size:15px; letter-spacing:0.02em;}
+  .nav-links{display:flex; gap:26px; font-size:13px;}
+  .nav-links a{text-decoration:none; color:var(--muted); letter-spacing:0.04em;}
+  .nav-links a:hover{color:var(--paper);}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:96px 0 72px;}
+  .eyebrow{
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--amber); margin:0 0 18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--amber); display:inline-block;}
+  h1.name{
+    font-family:'Space Grotesk'; font-weight:700;
+    font-size:clamp(38px, 7vw, 62px);
+    line-height:1.02; margin:0 0 16px; letter-spacing:-0.01em;
+  }
+  .tagline{
+    font-size:clamp(17px,2.4vw,20px); color:var(--paper); max-width:640px; margin:0 0 22px; font-weight:500;
+  }
+  .bio{color:var(--muted); max-width:600px; font-size:15.5px; margin:0 0 34px;}
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:22px;}
+  .pill{
+    font-family:'IBM Plex Mono'; font-size:13px;
+    border:1px solid var(--line-strong); padding:10px 18px; border-radius:var(--radius);
+    text-decoration:none; color:var(--paper); transition:border-color .2s, background .2s;
+  }
+  .pill:hover{border-color:var(--amber); background:rgba(232,163,61,0.07);}
+  .pill.primary{background:var(--amber); color:var(--ink); border-color:var(--amber); font-weight:500;}
+  .pill.primary:hover{background:#f0b158;}
+  .contact-strip{color:var(--muted); font-size:13.5px; font-family:'IBM Plex Mono';}
+  .contact-strip .fill-in{color:var(--violet); border-bottom:1px dashed var(--violet);}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:64px 0;}
+  .section-head{margin-bottom:40px;}
+  .section-head h2{
+    font-family:'Space Grotesk'; font-size:clamp(24px,3.4vw,32px); margin:6px 0 0; font-weight:600;
+  }
+  hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* ---------- PROJECT CARDS ---------- */
+  .project{
+    border:1px solid var(--line); border-left:2px solid var(--accent);
+    background:var(--ink-2);
+    padding:36px 34px; margin-bottom:28px; border-radius:var(--radius);
+  }
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+  .domain-tag{
+    display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono';
+    font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;
+  }
+  .domain-tag svg{width:20px; height:14px; color:var(--accent);}
+  .project h3{font-family:'Space Grotesk'; font-size:24px; margin:0 0 8px; font-weight:600;}
+  .project .tagline{font-size:15px; color:var(--paper); margin:0 0 18px; max-width:600px; font-weight:400;}
+  .project .problem{color:var(--muted); font-size:14.5px; margin:0 0 22px; max-width:640px;}
+  .tech-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;}
+  .tech-chip{
+    font-family:'IBM Plex Mono'; font-size:11.5px; color:var(--muted);
+    border:1px solid var(--line-strong); padding:5px 10px; border-radius:var(--radius);
+  }
+  .gif-box{
+    border:1px dashed var(--line-strong); border-radius:var(--radius);
+    padding:26px; text-align:center; color:var(--muted); font-size:13px; margin-bottom:24px;
+    background:rgba(255,255,255,0.015);
+  }
+  .gif-box .gif-icon{color:var(--accent); margin-bottom:8px;}
+  .gif-box .gif-label{font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:0.06em; color:var(--paper);}
+  .gif-box .gif-sub{font-size:12px; margin-top:4px;}
+  .features{list-style:none; padding:0; margin:0 0 26px;}
+  .features li{
+    position:relative; padding-left:20px; margin-bottom:10px; font-size:14px; color:var(--paper); max-width:620px;
+  }
+  .features li::before{
+    content:""; position:absolute; left:0; top:8px; width:7px; height:7px; background:var(--accent);
+  }
+  .link-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .link-row a{
+    font-family:'IBM Plex Mono'; font-size:13px; text-decoration:none;
+    border-bottom:1px solid var(--accent); color:var(--paper); padding-bottom:2px;
+    margin-right:12px;
+  }
+  .link-row a:hover{color:var(--accent);}
+
+  /* ---------- ABOUT / SKILLS ---------- */
+  .about-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px;}
+  @media (max-width:720px){ .about-grid{grid-template-columns:1fr;} }
+  .skill-group{margin-bottom:22px;}
+  .skill-group .label{font-family:'IBM Plex Mono'; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:10px;}
+  .skill-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-chips span{font-size:13px; border:1px solid var(--line-strong); padding:6px 12px; border-radius:var(--radius); color:var(--paper);}
+  .edu-item, .cert-item{margin-bottom:20px;}
+  .edu-item .t, .cert-item .t{font-weight:600; font-size:15px; margin-bottom:3px;}
+  .edu-item .s, .cert-item .s{font-size:13px; color:var(--muted);}
+  .cert-item a{color:var(--teal); font-size:12.5px; font-family:'IBM Plex Mono';}
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{padding:64px 0 48px; border-top:1px solid var(--line);}
+  footer h2{font-family:'Space Grotesk'; font-size:clamp(24px,3.6vw,34px); margin:0 0 16px;}
+  footer p{color:var(--muted); max-width:480px; margin:0 0 28px; font-size:14.5px;}
+  .footer-links{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:32px;}
+  .footer-meta{font-family:'IBM Plex Mono'; font-size:12.5px; color:var(--muted);}
+  .footer-meta span{margin-right:18px;}
+  .fill-in{color:var(--violet); border-bottom:1px dashed var(--violet);}
+</style>
+</head>
+<body>
+
+<a href="#projects" class="skip-link">Skip to projects</a>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name mono">MUBASHRA WAQAR</span>
+    <div class="nav-links mono">
+      <a href="#projects">Projects</a>
+      <a href="#about">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <header class="hero wrap">
+    <p class="eyebrow">AI Engineer — Lahore, Pakistan</p>
+    <h1 class="name">Mubashra Waqar</h1>
+    <p class="tagline">I transform creative ideas into functional AI applications and ship them, not just prototype them.</p>
+    <p class="bio">Computer Science undergraduate (4th semester) at Lahore College for Women University. I integrate LLMs, retrieval, and speech pipelines into applications people can actually open and use — and I'm deepening my core ML fundamentals alongside that.</p>
+    <div class="cta-row">
+      <a class="pill primary" href="mailto:mubashra.butt051@gmail.com">Email me</a>
+      <a class="pill" href="https://github.com/mubashrawaqar" target="_blank" rel="noopener">GitHub</a>
+      <a class="pill" href="https://www.linkedin.com/in/mubashra-waqar-/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="contact-strip">Phone: <span class="fill-in">[0326-4069449]</span> &nbsp;·&nbsp; mubashra.butt051@gmail.com &nbsp;·&nbsp; Lahore, Pakistan</p>
+  </header>
+
+  <hr class="rule">
+
+  <section class="section wrap" id="projects">
+    <div class="section-head">
+      <p class="eyebrow mono">Projects</p>
+      <h2>Three problems I picked apart and shipped</h2>
+    </div>
+
+    <!-- PROJECT 1: PaperCompass -->
+    <article class="project" style="--accent:var(--amber)">
+      <div class="project-top">
+        <div>
+          <div class="domain-tag">
+            <svg viewBox="0 0 20 14" fill="none"><circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M7 3.5L9 7L7 10.5L5 7Z" fill="currentColor"/></svg>
+            Search &amp; Retrieval
+          </div>
+          <h3>PaperCompass</h3>
+        </div>
+      </div>
+      <p class="tagline">Search academic papers by topic, save the ones that matter, then ask questions across everything you've collected.</p>
+      <p class="problem">Keyword search on academic databases turns up plenty of papers that share a word with your topic but have nothing to do with it — so you end up skimming abstracts just to find the handful that matter. And once you've found them, there's no fast way to ask questions across all of them together. PaperCompass fixes both: search results pass through a second AI check that confirms they're genuinely on-topic, and a chat layer lets you query your saved library with answers grounded in the papers themselves, not guesses.</p>
+      <div class="tech-row">
+        <span class="tech-chip">Python</span><span class="tech-chip">Gradio</span><span class="tech-chip">Groq API (gpt-oss-20b)</span><span class="tech-chip">sentence-transformers</span><span class="tech-chip">OpenAlex API</span><span class="tech-chip">pandas / NumPy</span><span class="tech-chip">Hugging Face Spaces</span>
+      </div>
+      <video src="paper-compass-demo.mp4" autoplay loop muted playsinline style="max-width:100%;border-radius:2px;"></video>
+        <li>Two-stage filtering: keyword search first, then an LLM pass double-checks every result is actually on-topic</li>
+        <li>If a precise search comes up empty, it automatically broadens the search — and tells you it did</li>
+        <li>Multi-turn chat over your saved papers, grounded in what you've actually saved — it won't guess at answers outside that</li>
+        <li>Private, session-only library, with one-click citations in APA, MLA, or IEEE</li>
+      </ul>
+      <div class="link-row">
+        <a href="https://huggingface.co/spaces/mubashrawaqar123/paper-compass" target="_blank" rel="noopener">Live demo →</a>
+        <a href="https://github.com/mubashrawaqar/paper-compass" target="_blank" rel="noopener">GitHub repo →</a>
+      </div>
+    </article>
+
+    <!-- PROJECT 2: Voice-to-Voice Translator -->
+    <article class="project" style="--accent:var(--teal)">
+      <div class="project-top">
+        <div>
+          <div class="domain-tag">
+            <svg viewBox="0 0 20 14" fill="none"><rect x="1" y="5" width="2" height="4" fill="currentColor"/><rect x="5" y="2" width="2" height="10" fill="currentColor"/><rect x="9" y="0" width="2" height="14" fill="currentColor"/><rect x="13" y="3" width="2" height="8" fill="currentColor"/><rect x="17" y="5" width="2" height="4" fill="currentColor"/></svg>
+            Speech Pipeline
+          </div>
+          <h3>Voice-to-Voice Translator</h3>
+        </div>
+      </div>
+      <p class="tagline">Speak in one language, hear it back in another — instantly, and at zero API cost.</p>
+      <p class="problem">Most real-time speech translation tools sit behind paid APIs, which makes them impractical if you just need quick multilingual conversation as a traveler, student, or small business owner. This app runs the entire pipeline — recognizing speech, translating it, speaking it back — locally, with no per-request cost, and it's built to keep working even when a service it depends on gets rate-limited.</p>
+      <div class="tech-row">
+        <span class="tech-chip">Python</span><span class="tech-chip">Gradio</span><span class="tech-chip">faster-whisper</span><span class="tech-chip">deep-translator</span><span class="tech-chip">gTTS</span><span class="tech-chip">Edge Neural TTS</span><span class="tech-chip">Hugging Face Spaces</span>
+      </div>
+      <video src="voice-to-voice-demo.mp4" autoplay loop muted playsinline style="max-width:100%;border-radius:2px;"></video>
+      <ul class="features">
+        <li>Full pipeline — recognize, translate, speak — runs locally with no per-call API billing</li>
+        <li>Works both directions across 11 languages, English included on either end</li>
+        <li>If the main voice engine fails or gets rate-limited, it quietly switches to a backup so you still get audio</li>
+        <li>Handles empty or unclear recordings and unsupported languages without crashing</li>
+      </ul>
+      <div class="link-row">
+        <a href="https://huggingface.co/spaces/mubashrawaqar123/voice-to-voice-translator" target="_blank" rel="noopener">Live demo →</a>
+        <a href="https://github.com/mubashrawaqar/voice-to-voice-translator" target="_blank" rel="noopener">GitHub repo →</a>
+      </div>
+    </article>
+
+    <!-- PROJECT 3: ATS Resume Analyzer -->
+    <article class="project" style="--accent:var(--violet)">
+      <div class="project-top">
+        <div>
+          <div class="domain-tag">
+            <svg viewBox="0 0 20 14" fill="none"><rect x="0" y="9" width="6" height="3" fill="currentColor"/><rect x="7" y="5" width="9" height="3" fill="currentColor"/><rect x="0" y="0" width="14" height="3" fill="currentColor" opacity="0.5"/></svg>
+            Hiring Tools
+          </div>
+          <h3>ATS Resume Analyzer</h3>
+        </div>
+      </div>
+      <p class="tagline">Upload a resume and a job description, get a transparent match score and a skill-gap breakdown in seconds.</p>
+      <p class="problem">Most ATS tools match resumes to job descriptions on exact keywords, so someone who wrote "ML" instead of "Machine Learning" can get filtered out even when they're qualified. On the other side, recruiters screening dozens of resumes by hand is slow and inconsistent. This tool matches on keywords and on meaning, and instead of one opaque score, it shows three separate numbers — skills match, keyword density, experience relevance — so you can see why a resume scored the way it did.</p>
+      <div class="tech-row">
+        <span class="tech-chip">Python</span><span class="tech-chip">Streamlit</span><span class="tech-chip">Groq API (gpt-oss-20b)</span><span class="tech-chip">sentence-transformers</span><span class="tech-chip">spaCy</span><span class="tech-chip">pdfplumber / PyMuPDF</span><span class="tech-chip">Tesseract OCR</span>
+      </div>
+      <video src="ats-resume-analyzer-demo.mp4" autoplay loop muted playsinline style="max-width:100%;border-radius:2px;"></video>
+      <ul class="features">
+        <li>Matches on meaning as well as keywords, so related terms like "predictive analytics" and "Machine Learning" are recognized as connected</li>
+        <li>Score breaks into three parts instead of one black-box number</li>
+        <li>Reads PDF, DOCX, and TXT resumes, including OCR for scanned PDFs</li>
+        <li>Upload several resumes at once and rank them in a sortable, exportable table</li>
+        <li>Flags formatting issues that would trip up a real ATS parser before it becomes a problem</li>
+      </ul>
+      <div class="link-row">
+        <a href="https://ats-resume-analyzer123.streamlit.app" target="_blank" rel="noopener">Live demo →</a>
+        <a href="https://github.com/mubashrawaqar/ats-resume-analyzer" target="_blank" rel="noopener">GitHub repo →</a>
+      </div>
+    </article>
+  </section>
+
+  <hr class="rule">
+
+  <section class="section wrap" id="about">
+    <div class="section-head">
+      <p class="eyebrow mono">Background</p>
+      <h2>Skills, certifications, education</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="skill-group">
+          <div class="label">Generative AI &amp; LLM</div>
+          <div class="skill-chips">
+            <span>Prompt Engineering</span><span>RAG Pipelines</span><span>Semantic Search &amp; Embeddings</span><span>LLM API Integration (Groq / Llama)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Applied AI / NLP</div>
+          <div class="skill-chips">
+            <span>Speech Recognition (Whisper)</span><span>Speech Synthesis (TTS)</span><span>Machine Translation</span><span>spaCy (NER)</span><span>Document Parsing &amp; OCR</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Core Programming</div>
+          <div class="skill-chips">
+            <span>Python</span><span>OOP (C++)</span><span>Data Structures &amp; Algorithms</span><span>SQL / Database Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Tools &amp; Deployment</div>
+          <div class="skill-chips">
+            <span>Streamlit</span><span>Gradio</span><span>Hugging Face Spaces</span><span>Git / GitHub</span><span>Google Colab</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group">
+          <div class="label">Certifications</div>
+          <div class="cert-item">
+            <div class="t">Prompt Engineering Mastery</div>
+            <div class="s">AI CERTs, via Coursera — June 2026</div>
+            <a href="https://coursera.org/verify/MF91JBJUHUSW" target="_blank" rel="noopener">Verify credential →</a>
+          </div>
+          <div class="cert-item">
+            <div class="t">Generative AI Application Developer</div>
+            <div class="s">UETIANS Endowment Foundation Lahore, USA — May 2026</div>
+            <a href="https://quiz.ideagist.com/ideagist-certificate/?cert_hash=afba166c60fc556a" target="_blank" rel="noopener">Verify credential →</a>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="label">Education</div>
+          <div class="edu-item">
+            <div class="t">BS Computer Science</div>
+            <div class="s">Lahore College for Women University · 2024–2028 (expected)<br>Current semester: 5th · CGPA 3.2/4.0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="wrap">
+    <p class="eyebrow mono">Get in touch</p>
+    <h2>Have something worth building? Let's talk.</h2>
+    <p>I'm looking for remote work — freelance, internship, or junior AI engineering roles — where I can build real applications and keep learning on the job.</p>
+    <div class="footer-links">
+      <a class="pill primary" href="mailto:mubashra.butt051@gmail.com">Email me</a>
+      <a class="pill" href="https://www.linkedin.com/in/mubashra-waqar-/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pill" href="https://github.com/mubashrawaqar" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="footer-meta">
+      <span>mubashra.butt051@gmail.com</span>
+      <span>Phone: <span class="fill-in">[0326-4069449]</span></span>
+      <span>Lahore, Pakistan</span>
+    </p>
+  </footer>
+
+</main>
+
+</body>
+</html>
